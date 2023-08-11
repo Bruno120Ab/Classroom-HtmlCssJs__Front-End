@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bolos da Grazi !</title>
+
+        <link rel="stylesheet" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/fontawesome.css" />
+        <link rel="stylesheet" href="./css/animate.css" />
+        <link rel="stylesheet" href="./css/main.css" />
+        <link rel="stylesheet" href="./css/responsivo.css" />
+
+    </head>
+
+    <body>
+
+        <div class="container-mensagens" id="container-mensagens">
+
+        </div>
+
+        <a class="botao-carrinho animated bounceIn hidden" onclick="cardapio.metodos.abrirCarrinho(true)">
+            <div class="badge-total-carrinho">0</div>
+            <i class="fa fa-shopping-bag"></i>
+        </a>
+
+        <section class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg pl-0 pr-0 col-one">
+                    <a class="navbar-brand wow fadeIn" href="#">
+                        <img src="./img/assets/LogoGrazi.jpg" width="160" class="img-logo" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+                        <span class="navbar-toggler-icon">
+                            <i class="fas fa-bars"></i>
+                        </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ml-auto mr-auto wow fadeIn">
+                            <li class="nav-item">
+                                <a href="#servicos" class="nav-link"><b>Serviços</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#cardapio" class="nav-link"><b>Cardápio</b></a>
+                            </li>
+                        </ul>
+                        <a class="btn btn-white btn-icon wow fadeIn" onclick="cardapio.metodos.abrirCarrinho(true)">
+                            Meu carrinho <span class="icon">
+                                <div class="container-total-carrinho badge-total-carrinho hidden">0</div>
+                                <i class="fa fa-shopping-bag"></i>
+                            </span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </section>
+
+        <section class="banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 col-one">
+                        <div class="d-flex text-banner">
+                            <h1 class="wow fadeInLeft"><b>Escolha seu bolo<b class="color-primary"> favorito.</b></b></h1>
+                            <p class="wow fadeInLeft delay-02s">
+                                Aproveite nosso cardápio! Escolha o que desejar e recebe em sua casa de forma rápida e segura.
+                            </p>
+                            <div class="wow fadeIn delay-05s">
+                                <a href="#cardapio" class="btn btn-yellow mt-4 mr-3">
+                                    Ver cardápio
+                                </a>
+                                <a href="#" class="btn btn-white btn-icon-left mt-4" id="btnLigar">
+                                    <span class="icon-left">
+                                        <i class="fa fa-phone"></i>
+                                    </span>
+                                    (17) 99168-6069
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/limafront/" target="_blank" class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-sm btn-white btn-social mt-4 wow fadeIn delay-05s">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+
+                    <div class="col-6 no-mobile">
+                        <div class="card-banner wow fadeIn delay-02s"></div>
+                        <div class="d-flex img-banner wow fadeIn delay-05s">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUWFRgWFhYZGRgaHBocHBwYGhoZGhodGhwaGhwaGhgcIS4lHB4rHxoaJjgnKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHhISHz0rJCs0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIAL4BCgMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAADBAIFBgEAB//EADkQAAEDAgUBBQcDAwUAAwAAAAEAAhEDIQQSMUFRYQUicYGRBhMyobHB8FLR4RRC8RUjYoKSBxYX/8QAGQEAAwEBAQAAAAAAAAAAAAAAAQIDAAQF/8QAJREAAgICAgIDAAIDAAAAAAAAAAECEQMxEiEEQRMiUULhMnHB/9oADAMBAAIRAxEAPwD64F1Ca9TzLWYmVFq8HL0ogJpau1GlCe1Ywi8ITim6lNAfTWMJPckMTUVlUopV+GSsxWhRIJVkcO0aobazGnVYNCIwrjtCZo4KNUxiO0GAWVZie03AWSSnGO2UjjnLSLB7GjVU/aParGDUKmxvaFZ5Iaqqp2VUqHvvPgpyzQXspHx5v0B7U7bc8kNNuVVtur6h2IxvxXRm9m02iVJ54l4+NIoWFNU6itv9NpnTUr39Cxvih80BvgkcwFQbq4puYkf6VkCF1lJNHPEnLxplo1rTupe5CQaDGq82qRuqLNBk3gyIsPcqDqSDTxTkw3Endqe4Mm4zjtA/dITqKcZWYeinkB0KPBC82UWJwrpsVLCMqgxKuXU+iJhwL2utxDzFPfva2LoQxEdE9iQEi6nJSuMhlKJMYudTK978IT8Oh+7UpRd6KKUf0ngv/kVhEOBBTv8A+gUjYEr5E+iUFznBWRJo+4Yb20pkSXBDre3VPNAMr4q3FOG6KzFI2wcUfdsH7XUnC7k072mpfqC+DsxhGhTDMa79R9UeTNxR9of7TU/1BLVPain+pfKsM57zlbLiryh2G+Je6OgU5ZFHbHjilLSNdV9qmbFKO9onOMNaSqzDdlMaY1PVOsw5LoEDjyUJ+WrqPZ0w8N7k6DuxL3i5hKh8G+qO90CNCqzE4mDYSZXNLPKW2dUMEI6Q1UrgCSTPCTGJdMZTBKO/Bvcc7yL7BdqPaABNwoScr7ZeKS0Q+IyLAItVzRofFKtqnZBxNaUHNBUQ78Uw6xZCY8P0FgkJbqQpsxJDYbZBP2NxofyCRtC9nGYGJ+6Vw2LPid/BW+FoZqYeesQnj9nonJ8di49ER4LRITTsCGsD3bG/gh43DAyWHMOQmcWBSTEvfO0sispki5E8KAwTg3NrPBug1Gw7Qygk0hrTGWCZI2XhiCOUGlWyXnVdr4phaI16brKTjsVxTYVzzrsutxPVAax+gFv3UCyNT4qkfIknslLBCW0WjsVlYHAkncJNvbjQbpZ1UixKVxuFY8SRfkLqh5D9nLPxF/Ev29pscJQ2YthdqqOhhIbEle/pXDdXWZM5pYGtmp940jUIWYdFl3PqNQf6upyU/wAiE+NgH9nHhV2J7OI2W/8A6UJDGYITCipF3EwNbAnhA/pYW8f2TISj+xjwmUhXExppK/8AZ72edV/3HktZty7+FedmezGZ+Z47jbxyVfVWj4Wjut1boQAo5sziqjsvgwqT5PQHAYSnTsxoaj4t2QkE5p4UalMfGPhHW48UEicxdawjqOi45d9tndGloOxhcMwFlytRs0ydzG9l4YlzGFpsNQFKlV7syDmmCLkdEv1D3sTrVrgz1um2YGWNqAiJEgfElsHQb79rXRBt1nZOY1haAWnLfSZuOFkoxTb0GTbaSEn1ZfkAJv8ARKVqgEzYzonX4gGHCA8Emd9IVbUw0glxkyp84vQyTAVMRG6C6sXGShvjNBGijVes0mMmEa9o18kFtUCeEA1UGtWVFH0K2PUcQwTJ8Fb9idssYCHu0u0bLH1KyVdXKvCDTtE5NSVM+sntilWDWNvmMEKyZhWsbkayS42I0AGq+NYXFlrpDiDyCtz7NdsPf/tveY1Dtx0lO+n2RlDr6svcTgQwlzSQQQeiqqrTnzPHd35VniTA1JHLtzrHiqfE4hpaTBt5Queb/C0E6E60Sh0mGC6w8l1lYAAganzCjXriYn82SLtdlH0+h12JJYBMlKPxD9ckg7IjKcaCLzBuVEh7r2F7hIlWg9HmGW3He28F0ghefTE63i/EyhOeQYVFKkLxsOwk3IRWVRMeiE2t3YOx9UH4tJCaM6ZOcFJUx2oAge6UWlxbIvGqB753BXbHtWcEunRfVahm10ejgnvhxEDqrTBYBrBLrlWjMPm2gKyhZCU6KWnghvdM0sEybhXbMK0Kfu28IrGI8jKPGAtbLLARPVVbsOx75Lg0HV0blaV9OZEeWyp7B57ktHmDK4M31dvR6WF/WkVuJGQFn9gMZiIk73UqtJoghzS3x8o8k1i8jjBcIJJy3EzYnNo0fsq3FtyNDA6zSSYg33NlFzSulZ0RV7J4in3gXkZZiBqAB+6BUflENFyZHTwTGGcwMktznNrmhxtpHzSmIxha/MwRtGuuuqhLk3adWVjS6Ote5zwbNdaSNyN/FNGheSZ5S7qjmnvtjrwjsriL73U3GTf2YkpVom/DNAkBRq4VpEqL62y40ucMrRLjYAbpoxV6JuUv0zGNIDiPolK9Nwgua4TyCFrDhmU3SBmebOPBtLRxCi8lwOYaCYmROl/FUi6dJFq6sxT3pevUstviGsA7jg6dTEQNdPklHuY4loYHxsQLC0nSCrxkkI4t6MJUeoFrv0ujwK3+DwrZJZSpg6CwmdeEznaWjO/KTmzAAQI+EgxurfOl6E+N/pg8N2XXcRFJ/mMo+a2XYmF9zLnkFzgO6L5Y6ouIxbSMjRYAgkm5ta+90jTecsAxqD4C/wBlGebmUjipdlrXxZdAAJG8deUrRGV4c7KRoWOEjpulsJRe8gDNDiBvJAuTA13XHYepIEGOSRaDHw68qTbseklQetlzCCIdMToJCgzDT3i20gg2gwbwpjCZnNDj3Ae8dCBrbYhHxTmWawQ3Ybm/PKW2lZun0TeWgZx8V5HHgq91Yk90cqbnQNDAvfbQeYQntnTrcdVkzUeY93PlHyXQ4TcGSPJEos7riRYd0eLgYPhb6IYBGv1T2tUKyVV/SwTVAd0RIKXw93AOtqeZjQdJTrqjpy5YdpHFvkhpm2ix9laDX1HsOmWfOVo//rrOFTexuHc2s4u/SfstrK9TBG4KzyPKlWR0I08IBrdMjouJetWMgNIAJLZkAyBP91tPoVeUlBWyEYuTpB31mtsXAE6AkSq/E9qhoBY3NO5MAKmrYsvqAZwWNgucTA1EgcxOy5j2Me5rGkkEANDQZJhxjTctidugXBLypSvj16/2d0PFhGuXf6Gr9pF4e5pLA05Z/tzHVpdsq+s5+cS7LntEx5E2AOmnKE6mGMc11mAxlcPhIOaRJGZ0SfB2ycoUc1QOJDi1uWDcQQQ1zhMggA7WnzXPTm+9nWuMNaF8Ocj3trGJEQRJN9I0HM9EnUquzQ0Se+JixABcRfpsi9ouzAue2XiZmZOYAtJ2NjIUcLUcXhzLuLcxa1sHuC53ESYSNV9V/ZRP+T/ohgmiWMcAC4XykNLG6lxM6wYjyUKDWAua9uYOs0ukR/ynTj0XMRVkzvF3EamIdr+aoODYC9pcTlkEiJ8beKSUqHUdtjmOhrgxskAafp302CVc5/xEW0hWGGblBc43Nz9Upi35u4BmnblScnJ2LyS6oDRLnEta0uMEwL2Gp8ArKgw03gkgkW1FiTHdOk668IXZzTRYHNcGvykkuI0kkgDoMscnyUffkFtN5OXMC4jvEhwLrHbX6q0VoVR3Z6n2jlIMixkWkOO8nmI9VzDPc1r3ubma8gFx0Dc0uDW6F0wY6INemzI6AQc5aA29mgG2sjTTrK41pDHZH90xI/SXQ7MGm1jAmd00VxdjPtC+My5zkd3SYZbaJykbm4C5TyMaZdeZsDM6ZempMolWo1pc9rbXblIJaC4TAvJMXtpKGxjC0WmoZOtoBEaC9tf8pnsK0EfDXRcHuxIv3xIBO1iknUXOIcC1t9XETAv8PGiPhnw8OmZgCTLSTO+158JXHV2F+fKN7QQJI4Em0pH+hVk8S1royjvQAeCeROiI9ga0QAJzGzSCZERO4BQ6Rhws21+kR3gRY7j0UcTUcQ1t4ixIIABk2tpqldoNJjzLRUnY5chsIgEm8jXU8oJrAd4tzT1IMydYMj+EOkSWaS4C5nN4W103uEu55LiAA8C2ZomJnkAnQnyW2wUHc8v714GoFjrHgo16OXK5zo3tEwfA/l1ygwthx3kERchwIkeGoKWruIMD7fP91taGSsIarZFp6/fxRHT/AGkAG/lHTTdLsZZxjjWxk8c6FEcxsWcM1rDrwObLNmo84ujW9tBqOVxrXEkk3HNj5rzGEa2A30KlTewwIFt/U35WsBFrovaRqj4Bhe+7rAF1xcxP+EIUS+zR0P8AnZO0GBggamZPj/CpCPtkpzpUjW+yzSc7zrZg6AXWhzJDsWlkpMbuRmPibp+V7GJcYJHh5Xym2QCz+JqFtUGbNcTlIsZB++VaAKl7aZ3rbgz4xP2UvJX1TK+M6k0Ar1A8MJHxOa3ui0uDg0xoAIvI40SVDDxmcWh1ZjXBrQ+3ckTqDByu63S/9Q5jjBkcAmZJH9vgB6hSo9ovGVshoE53uJzQA4hjnXMEk97wtMTxOm+9nek0qQSsyk8C4c4tDnZw8WuBkDjclztZgNCqBXNJ7g4EBwa188BwcSDYHQ26kKyZVZDajWtDiXCRmLQ1wAJfc5QGkgSZ702tM61PKzIGugUw+YBN3Amx0bLjbpbdI++1seLrp6KOoHvc2JvHfDSO6G2GW05RKPgaeQPcHC7Yi8nw5EmYNjlXqToziJPdewnW22XQyHaFO4TBz3nDXbrOq5pzdqtnQ2ku9A34QPIu4tE3O4JJsNtZU3AM22j9vJP1CGqk7SxXXokr9Jc3IhisUNin+ycAWtDnkNc8SyYIa0XkzubQNdFSdl0w+q3NdjTmcNyJAgdSSFpMc5wJphrg4hriSbAkENnUANLhdVhCu2Zv0irxdQvdlDw/KC45QCbNuD4AX/iVGu8AB1MEMiTPekt1BOmoOvKNTLWsd+txcCSZvBOVpb43QQ4NYWOOaSDcO2ETlact+YlGVJ7KJkahLQ14Il0iAcwEgeFxPkoucGEscQ+5BJEAEiA6QZMA8b9Als5FuSI0mT4LpY8kB0RECLuiZsNiQUExqI0398MkQb7c6OnmB69VHG08zzJGsWJMWmBPgfRNf7jQaYaBDpdmDZzfCMxImL6dSo1KLQ4wJg90mNG2O8H+FuVBX6JvaA3u2i9zudwB0hFrVm2a1uXK0NJbEmwu473BKjiHbW2I0+cfVeaxohxN7GBBFrgEXm0LKRqO0agyy8SbZdhqS42G+nzUHnMJmGjRpcTfaOq5IF5zAjTSD/Ck2kLB0m57unn9PRZyDRxlOGy50nTLPl9LjW6PRGVjiwm5Bcd2wHRf/sbLmGbLhIkAbnL9elvJdr1gTFmg3txwek9FnYABpyREyY5nxhe9zLoE+Y+cbcyiUnWlpFidbzuNREW8bobid4tqTp5xsggthH1nWAfIAgaEeX7roDWNGhO8iTbbopYfC525icgtA1zbmOGgfVFw7ILwGgEmGOgOI5iZATcWxHJITbnfJaIHJTNCkWhpgG3eJG5iAB0Mo+RrSe+ZmwsRpz+aLrydzrx0VIxSJym3o5774gLk77jS5UsM3M9jNS5wB89UvUe0CRYyVa+xmBNbEyfhY0uJ6mzfv6K0FckiOR8YNm20I6KeZcxGHew8tQP6gcr0k0eQ0xtoVb2yyzTbXccK1Vd243/bB4cCp51eNlcDqaMlWd3gCQHQYGma4gg+GqRrVi0SyZne95i43uU/iGNL2uIJDSTOpFiY8ISVeCCDsYP2+y4Iu+j0X0Tw+JYzuggAzAjM3MSe8G3EwY30tCPnc4OcZawEMGhJaNgDqLDeFS12Zd7c8/n3U6b3Els+k/JJOLS6KRabLzC0BAdeALfdWGGd3Zj80QKFM5A0cXR4i3QfNc6iLOViWOeGt3566ystj8UHGwPmtB2pUBa4WkQB6x6LKYl8PiZTcezRZbdjVgxj3f3OkDmANAfWU+/FNcyZdLQTdxvNyCBfYC3Cz1GuckAxBOu/5K5TxL26HfX88AqKLY/JFnU7WpvAtFx3RoCG5Rcn4oGu8orgy7mOtMDNeLF2oFrEfNZ8sAy5j0/aT6p5lT/acwBusjWQSb7XsNVpYh1NdF3RIpPa9uV8SMrmiOJHPmN0vicQS74TrP8AdbMZjMfzzVRRxdQGzWm4BG/Q5piEycS4vIJgkAEC4Ftzvr80rhLXoKkk7DVK7nG7yXSDJJJ0Av0R69YOAPcaNr667fulnPs4W+GdB4DS+yhhsuYOqMJY2RladbaxxJJjeEPibDzR4GxPrYmNLngSVKoyCWuEEayd99EV+Md7yJlmS4AtEzdoF4MXGsKT6rHOnuzO294AE25Q+M3MVdUtFvEXPyUm1hIEA20vGsa+Xoo0XBpcMmYECxF5E6HaxR6tUgANETfytY9Z+iZYwOYFrXFxhrgJJgaaGAC7U6xN0Z1IFgIYA6dnCBaYLY5kIf8AUGzCRcXBMTxCmykAJc8ATJ3t66ymURXMGzCgRmJMzMHyvv8AgTTaYyw1osCRJkx48hdNRoAymSRrsJ+iC12YyHFx0kCB1AO+vVakgcmw4eAACQdo6RG2my4xosSJ11JGvRCaYBHXa3z3SrC4PJcZAFthfotZkh9wANht5eSWOIvYGOv7Lj6wBmdib6IFarmjqsug0de+/r6nda//AOPHBpqvO+Vv1P3WIe4my2vsrTyUOpcSunx1crObynWOjf8Avg4Qgf0bOFRMxRG6P/qRXf0eX2WSQ7aeBTLdzonys32vXLnwNAly/wCDX6Uwr7plC58OHjxyI9Eji35c2rpIkHifLSfmnMaw3EwZFhrqkq5JBaDebm4MfknxXmQZ6sl7F3VZhjgQZEA+IEzumMPYmY3F9eiScHFzmuBcwiRbcR6alGwDWBzRmOY6SdNgPDZNN/UEUarA3aD0U6giUt2Y0hsTuQm6zZC5UhJdSM72iRlk3grN41ga/iQDzqtT2rT7qyOJeSTeVWOzJnKL5t+bIpi3eBnWNjwUlRd3j4GFKtOXQZrGVVIfaHGugRpEbrzKgEg7giUm2q7QjfUGbGP7d0UVgT8bbbRHyKehRpjHESHNjYk6neOf5U8+QZnX0Bi5nTRJufIgmYmMoiJ280ahUc0Q3NG4IFuqWuwjTnGAQbbneP8AKkyoS0jYHQ31n9gkWYnN3QXTOYEQ3xFtuil710gONtQSdxMTyt0DseYWwHFw0Pz2Ui5oBsTBFxaxk2sdSq91UB5Eg9Bc38FPD1C0nWOD1+aDHQ2zEd6xZl6yTrca2PVdrVxmnVwzABrswjZxIFjGyTqVWkQWSRbYa6HXRdpYgt1j/qNNvNZ2GkNMxDz3nEX0AGnkb7LxJJAeN9DppwN/NBay9j3TOv1voiOq3N99/wB0rYUhmozMwtkf4+yEKwaIGwEbDgfdLF5JmSZ1+kBSay8T1U2yiiGOLIMR8vQoT39fw8iURlKTJNhqdhwPFCrEZjJkTbRZOw9HM/8AMdPooF0zF/w2Qw/N4JigATaCOU6iJJhKdOBK3GAZkpsb0v5rI4Klne1vLh6BbaF2+PHbPP8AKldIg9yBnRajEvlXSchrahsT0WXjM8nqtRVu0rOsp94qeT0Uxeyn7ZZlJJ0PSVRPJn5Rt0grWdt0pDbajx0lZXEUHQXGALg2iT081wNJNo9OLuKYKu8fCHEC5nYEZZkeB+SDRrDOM0SBqJ8PNHc+3eF7GeRABnyCCWEmdQdIM+MoSVoMemavAPkag3JkdU66wVT2K6Z+6tqrguZE8iqVFNj2yCVj8W2CVtcSM4OUW5WL7QaQTKrHsCK0uhw629bKb37cAhKVBLheADMp+qyTIP2XRVUaLB06kCJuL/hUswJkgWNifvH5ZQNOPzRcyeh624TBGG1xr/j5rza/dIvMcx0SvutN/wB/upMaDrtf7INIyYdrxqBxtuUdlWZmIB8eRcJP3g4jgx917PqNtfUJWh1QRtvhsOovPXoiCoebkwTPj6INE3AvHz/NE0ymTcaehn9lmHo8KjrzcRfeNjp+XRWBsC8kkW0j5FRDAAdY6AfP0HqoudA44j7/ACStBQdhmDp/MKTqgsNEs2rJjSP2vKk2qNCBvc6ARHqpuLHQdlQi4meT+WUm4gA6XPnqlWVDMR16XuF5rzYkDfaFnENjdXEZhA+EapZxuTsfuuBwAgabKdPLG/ldFRoWyYogC511RaTY00Q3GdrGPKyOy6dISTLv2Yw5L3P2aI8ytOQkuxaGSm0bkSfNPld+OPGNHl5pcpNkHiQl8pTTlCFQmaElVGKp5H+KtiErj8Pnbb4hcISVo0JUyn7ZZLG9ZBhZepUzMy6XdG+5ErTdod6ieWmSPqspiYzjKIbuTEXm4Xn5I/Zv9PTwy+qQLEgQG3sDpr4ekeiWovBaIMOGtjG3z/dexFESBN4/xtayg0uYbC8/I208vmlroqmaDsh4BDeRcxERM+VldOZPmqLsapcEiLFvXmYV3mv+brlf/RMmxXEAAGBzosT2wO8Vt8XJm4jflYz2gp3HJ/LqsF2Tsy1R/fMcx0Vo7KY4IGnkqrEiHT5J/CPBZBFx6RyuuS6TNF90EaB9l4NMECLfVQD/AAjZej/l57JUMFe0gfXj5ar2WxdIIiTE+Gh2QCXHdTdIBAgyOptO8WCNACUzI1N9Ov8AIldyAHUEcn9kJpMa9L/YIjdxe97njb84QYUw7WDaOnUellJj4Owg2Ez59P5Qw7Wb8fUCAhgEH/N56JaHDMqNG5F55nnTdGc2RMzJuTsEoxhuYt1+R9EdpkanrFo9fJBoazj3D/rp6G10OPwpk07Gbgx+dSpQCCSLz9Onp8kKCpAaVDNfTZEdhjsZAsCZ8/JGY3nK3y8Fx4uND4afk7ImsE0OnodfDdFAjS6615Ou0T+eqk5wBixG/WdgtQHI6aYkAHTbad1b9h4DO/MR3BqeTwEDszs51V1rMGro+Q5Wuw2HaxoY3QK+LHfb0cubLXS2Gpoii0KRXWjhZEhDzKT3pX3iwKNZCjCIF4BNQpT9q9nFwzM+LcaBw48VgMYHMcWkEA28JIseCF9WeFV9sdisxDC1wh36hr58qOTEpHRjzuPTPm1OpLnbHXSRHXyi/VLMrM1N/wBxJA8B905292PWwxGdriwy0Pb8N4AzcWCr6QaRlkQHEEy3WLmfIeq45QcdndCal2i67NeMwPBE+B/BdWzccDUygGA7KSRvc2PFvms7g3QQXEuBn4YmYtPmFqcHRaWNJHBv9fFccr5NIrkXVnK74tHeusr26wRm1+xV5jMRL8gmY0GvjPCUxPZOa7ifDb+V044Wcsnx2fPKjHPcdgCncOwtBGi0WI7EI+EKsxeEewXY4+CvNOqBCSuxCBoTPhyvNnaD8kMVLydeseilmH2j/CWinJBmtg6xxbfxUqzS2CRraJ+cKLDFrcQbroeJjMCNj+ywT1gYOniEWm3fUcjpyuOZOu8XJHXf1U47pH9uluDwPHdKwo8wbX1j8lTYBLr30vpPQ7L1RpyfTi33XQwA8yIvpebjkoDHm0m2OomZnfYGERzDYEXEbz8v5QixoAdLhpvbw4RGM0jzFj028Fg2de2CL2EnznjzRC85XEgnw55K40dJMXgTrsvCuCI343OutroU2bkgrH90SLx6Teyll1038fVM0eyKr4ysIBAu6wHr9lc4T2aaDL35ujbfMqkcUnonLNGPsz2HY9xDGAkzoBfzV3gPZ9xvW0/SNT4kaLQYfCsYIY0N8Bc+J3R1eGFLZzTzuXSB0aTWtDWgADQBEXlwuVjnOgrj3wgVawCr6+OHK1m42NV6qV96OVJlBz9ZAO2/nwif0Y/Sz/yh2Ho2kroKGCugqpE64rk6qJK8CgE4+DYiQbEESFke1vYSi8l+Hd7l51b8THb/AA6tPgY6LXrhCWUFLY8ZuLtHzVnY+Jo5/eUxEWLIcw94EnOLttNjCYweKNV7qUODdJEiw3B2uvoUWSVfAsMOAyzM5bfLRck/EV8kzqj5bapooMN2exmgvAEm5MclENNN4vDuYC6QWgE7g6TpofUJVj5AjflVjGuiMpN9gXUwhmgCmV7KnoWyqxHYtJ477GmeRdV1T2To/wBuZvgf3WnIXCFuKNyaMa/2OI+Cp/6b9wgn2VriwLCOCSPstxC6Ag8aGWWSMG32exTZ7jTPDm2idAfFT/0PEj4aev8Ayb+63QCkQl+FDrPJGDf2BiiCMtpBjM0A9dUVns1idwz/ALOn6afNbdcjRb4Ub55GRZ7K1SO89gvMAuIHyCcw3svA71T/AMMaPSZWjAUmorHD8A8s37Kmj7O0G6hzj/ycR8mwrGjhWM+BjW+AH1RV6E6SWkI5Se2SLl4uXioOKIpJdzJepWgKuGNfUB92AIE94kc8A8INhSstX1gN1X4jtJoOUXdwLn0ChSwZflc5xII+Ed0T5XOukppmFa0QAB4WW7ZukICnUfc9wHzd6aBO0MAxsEC/JufVNsYERoRSA5MixkAQu5TypsCJCcQ//9k=" />
+                        </div>
+                        <div class="card card-case wow fadeInRight delay-07s">
+                            Entrega rápida e Gratuita !
+                            <span class="card-case-name">
+                                <b>Fábio</b>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="servicos" id="servicos">
+
+            <div class="background-servicos"></div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-one text-center mb-5 wow fadeIn">
+                        <span class="hint-title"><b>Serviços</b></span>
+                        <h1 class="title">
+                            <b>Como são nossos serviços?</b>
+                        </h1>
+                    </div>
+
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp">
+                        <div class="card-icon text-center">
+                            <img src="./img/icone-pedido.svg" width="150" />
+                        </div>
+                        <div class="card-text text-center mt-3">
+                            <p><b>Fácil de pedir</b></p>
+                            <span>
+                                Você só precisa de alguns passos para pedir sua comida.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp">
+                        <div class="card-icon text-center">
+                            <img src="./img/icone-delivery.svg" width="250" />
+                        </div>
+                        <div class="card-text text-center mt-3">
+                            <p><b>Entrega rápida</b></p>
+                            <span>
+                                Nossa entrega é sempre pontual, rápida e segura.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp">
+                        <div class="card-icon text-center">
+                            <img src="./img/icone-qualidade.svg" width="250" />
+                        </div>
+                        <div class="card-text text-center mt-3">
+                            <p><b>Melhor qualidade</b></p>
+                            <span>
+                                Não só a rapidez na entrega, a qualidade também é o nosso forte.
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="cardapio" id="cardapio">
+
+            <div class="background-cardapio"></div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-one text-center mb-5 wow fadeIn">
+                        <span class="hint-title"><b>Cardápio</b></span>
+                        <h1 class="title">
+                            <b>Conheça o nosso cardápio</b>
+                        </h1>
+                    </div>
+
+                    <div class="col-12 col-one container-menu wow fadeInUp">
+                        <a id="menu-burgers" class="btn btn-white btn-sm mr-3 active" onclick="cardapio.metodos.obterItensCardapio('burgers')">
+                            <i class="fas fa-hamburger"></i>&nbsp; Bolos
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-one">
+                        <div class="row" id="itensCardapio">
+
+                            
+
+                        </div>
+                    </div>
+                
+                    <div class="col-12 col-one text-center wow fadeInUp">
+                        <a id="btnVerMais" class="btn btn-white btn-sm" onclick="cardapio.metodos.verMais()">
+                            Ver mais
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 col-one container-texto-footer wow fadeIn">
+                        <p class="mb-0">
+                            <b>Bolos da Grazi</b> &copy; Todos os direitos reservados
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-lg-3 col-md-3 col-sm-12 col-one container-redes-footer wow fadeIn">
+                        <a class="btn btn-sm btn-white btn-social mr-3">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="btn btn-sm btn-white btn-social mr-3">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-sm btn-white btn-social">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+
+        <div class="modal-full animated fadeIn hidden" id="modalCarrinho">
+
+            <div class="m-header">
+                <div class="container">
+                    <a class="btn btn-white btn-sm float-right" onclick="cardapio.metodos.abrirCarrinho(false)">
+                        Fechar
+                    </a>
+                    <div class="etapas">
+                        <div class="etapa etapa1 active">1</div>
+                        <div class="etapa etapa2">2</div>
+                        <div class="etapa etapa3">3</div>
+                    </div>
+                    <p class="title-carrinho mt-4">
+                        <b id="lblTituloEtapa">Seu carrinho:</b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="m-body">
+                <div class="container">
+
+                    <div id="itensCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">
+
+                    </div>
+
+                    <div id="localEntrega" class="row mr-0 ml-0 animated fadeIn hidden">
+
+                        <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-group container-cep">
+                                <label>CEP:</label>
+                                <input id="txtCEP" type="text" class="form-control" />
+                                <a class="btn btn-yellow btn-sm" onclick="cardapio.metodos.buscarCep()">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-8 no-mobile"></div>
+
+                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Endereço:</label>
+                                <input id="txtEndereco" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>Bairro:</label>
+                                <input id="txtBairro" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+                            <div class="form-group">
+                                <label>Número:</label>
+                                <input id="txtNumero" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Cidade:</label>
+                                <input id="txtCidade" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>Complemento:</label>
+                                <input id="txtComplemento" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+                            <div class="form-group">
+                                <label>UF:</label>
+                                <select id="ddlUf" class="form-control">
+                                    <option value="-1">...</option>
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AP">AP</option>
+                                    <option value="AM">AM</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MT">MT</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MG">MG</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PR">PR</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RS">RS</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SP">SP</option>
+                                    <option value="SE">SE</option>
+                                    <option value="TO">TO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="resumoCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">
+                        <div class="col-12">
+                            <p class="title-carrinho mt-4">
+                                <b>Itens do pedido:</b>
+                            </p>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="row" id="listaItensResumo">
+
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <p class="title-carrinho mt-4">
+                                <b>Local da entrega:</b>
+                            </p>
+                        </div>
+
+                        <div class="col-12 item-carrinho resumo">
+                            <div class="img-map">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="dados-produto">
+                                <p class="texto-endereco">
+                                    <b id="resumoEndereco"></b>
+                                </p>
+                                <p class="cidade-endereco" id="cidadeEndereco"></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="m-footer">
+                <div class="container">
+                    <div class="container-total text-right mb-4">
+                        <p class="mb-0">
+                            <span>Subtotal:</span>
+                            <span id="lblSubTotal">R$ 0,00</span>
+                        </p>
+                        <p class="mb-0 texto-entrega">
+                            <span><i class="fas fa-motorcycle"></i> Entrega:</span>
+                            <span id="lblValorEntrega">+ R$ 0,00</span>
+                        </p>
+                        <p class="mb-0 texto-total">
+                            <span><b>Total:</b></span>
+                            <span class="valor-total"><b id="lblValorTotal">R$ 0,00</b></span>
+                        </p>
+                    </div>
+
+                    <a onclick="cardapio.metodos.carregarEndereco()" class="btn btn-yellow float-right" id="btnEtapaPedido">
+                        Continuar
+                    </a>
+                    <a onclick="cardapio.metodos.resumoPedido()" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">
+                        Revisar pedido
+                    </a>
+                    <a href="#" class="btn btn-yellow float-right hidden" id="btnEtapaResumo" target="_blank">
+                        Enviar pedido
+                    </a>
+
+                    <a onclick="cardapio.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden" id="btnVoltar">
+                        Voltar
+                    </a>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript" src="./js/modernizr-3.5.0.min.js"></script>
+        <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./js/popper.min.js"></script>
+        <script type="text/javascript" src="./js/wow.min.js"></script>
+        <script type="text/javascript" src="./js/dados.js"></script>
+        <script type="text/javascript" src="./js/app.js"></script>
+
+        <script>new WOW().init();</script>
+
+    </body>
+
+</html>
